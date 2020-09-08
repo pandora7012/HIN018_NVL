@@ -16,19 +16,16 @@ public:
 	void Init(std::string nameFile, Vector2 pos , int numFrames , float frameTime ) ;
 
 	void Update(GLfloat deltaTime);
-	void Draw();
+	void Draw() ;
+	
+	void Shoot(); 
 
-	void setBulletlist(std::vector<std::shared_ptr<Bullet>> bullet) {
-		m_bullet = bullet; 
-	}
 
-	std::vector < std::shared_ptr<Bullet> >GetBullet() const {
-		return m_bullet; 
-	}
-
+	float pk; 
 	Vector2 m_pos;
+	
 	std::shared_ptr<AnimationSprite> obj;
 	std::vector<std::shared_ptr<Bullet>> m_bullet; 
-	int speed = 100; 
+	int speed = 150; 
 
 };

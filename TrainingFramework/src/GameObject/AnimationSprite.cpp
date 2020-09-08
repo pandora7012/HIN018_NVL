@@ -90,6 +90,11 @@ void AnimationSprite::Draw()
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
+Vector2 AnimationSprite::Get2DPosition()
+{
+	return m_Vec2DPos;
+}
+
 void AnimationSprite::Update(GLfloat deltatime)
 {
 	m_currentTime += deltatime;

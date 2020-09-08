@@ -14,14 +14,13 @@ void Player::Init(std::string nameFile, Vector2 pos , int numFrame , float frame
 	auto shader = ResourceManagers::GetInstance()->GetShader("AnimationShader");
 	obj = std::make_shared<AnimationSprite>(model , shader , texture , numFrame , frameTime);
 	obj->Set2DPosition(pos);
-	obj->SetSize(38, 48);
+	obj->SetSize(28, 36);
 	m_pos = pos;
+	pk = 0; 
 }
 
 
 int KeyPress = 0 ; 
-
-
 
 
 enum DKEY
@@ -31,7 +30,6 @@ enum DKEY
 	DKEY_DOWN = 2,
 	DKEY_LEFT = 4,
 	DKEY_RIGHT = 8,
-	DKEY_FIRE = 16,
 };
 
 void Player::HandleKeyEvents(int key, bool bIsPressed)
@@ -51,9 +49,6 @@ void Player::HandleKeyEvents(int key, bool bIsPressed)
 			break;
 		case 'D':
 			KeyPress |= DKEY_RIGHT;
-			break;
-		case ' ':
-			KeyPress |= DKEY_FIRE;
 			break;
 		default:
 			break;
@@ -75,9 +70,6 @@ void Player::HandleKeyEvents(int key, bool bIsPressed)
 		case'D':
 			KeyPress ^= DKEY_RIGHT;
 			break;
-		case ' ':
-			KeyPress ^= DKEY_FIRE;
-			break;
 		default:
 			break;
 		}
@@ -87,36 +79,70 @@ void Player::HandleKeyEvents(int key, bool bIsPressed)
 
 void Player::HandleTouchEvents(int x, int y, bool bIsPressed)
 {
-
 }
+
+
 
 void Player::Update(GLfloat deltaTime)
 {
-	obj->Update(deltaTime); 
+	obj->Update(deltaTime);
 	if (KeyPress & DKEY_RIGHT)
 	{
-		m_pos.x += speed*deltaTime;
+		m_pos.x += speed * deltaTime;
 	}
 	if (KeyPress & DKEY_UP)
 	{
-		m_pos.y -= speed* deltaTime;
+		m_pos.y -= speed * deltaTime;
 	}
 	if (KeyPress & DKEY_DOWN)
 	{
-		m_pos.y += speed* deltaTime;
+		m_pos.y += speed * deltaTime;
 	}
 	if (KeyPress & DKEY_LEFT)
 	{
-		m_pos.x -= speed* deltaTime;
+		m_pos.x -= speed * deltaTime;
 	}
-	if (KeyPress && DKEY_FIRE)
-	{
+	
+	obj->Set2DPosition(m_pos);
 
+
+
+	// Shoot and destroy out range bullet
+	pk += deltaTime; 
+	if (pk >= 0.2f)
+	{
+		Shoot(); 
+		pk = 0; 
 	}
-	obj->Set2DPosition(m_pos); 
+
+	for (int i = 0 ; i < m_bullet.size() ; i++)
+	{
+		std::shared_ptr<Bullet> bullet = m_bullet[i];
+		m_bullet[i]->Update(deltaTime); 
+	}
 	
 }
+
+void Player::Shoot()
+{
+	float x = this->m_pos.x; 
+	float y = this->m_pos.y; 
+	auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
+	auto shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
+	auto texture = ResourceManagers::GetInstance()->GetTexture("bullet");
+	std::shared_ptr<Bullet> bullet = std::make_shared<Bullet>(model, shader, texture);
+	bullet->Set2DPosition(x, y - 60);
+	bullet->SetSize(20, 20);
+	m_bullet.push_back(bullet);
+}
+
+
 void Player::Draw()
 {
 	obj->Draw();
+
+	for (auto i : m_bullet)
+	{
+		i->Draw(); 
+	}
 }

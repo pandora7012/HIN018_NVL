@@ -1,34 +1,19 @@
 #include "Bullet.h"
-#include "Player.h" 
-
-Bullet::Bullet()
-{
-
+#include "Slime.h"
+Bullet::Bullet() {
 }
 
-Bullet::~Bullet()
+Bullet::Bullet(std::shared_ptr<Models> model, std::shared_ptr<Shaders> shader, std::shared_ptr<Texture> texture) : Sprite2D(model, shader, texture)
 {
-
+	
+	this->dmg = 100;
+	this->SetSize(40, 40);
 }
 
-void Bullet::Init(Vector2 pos)
-{
-	auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
-	auto texture = ResourceManagers::GetInstance()->GetTexture("Animation/bullet");
-	auto shader = ResourceManagers::GetInstance()->GetShader("AnimationShader");
-	obj = std::make_shared<AnimationSprite>(model, shader, texture, 8, 0.25f);
-	obj->Set2DPosition(pos);
-	obj->SetSize(38, 48);
-	m_pos = pos;
+int Bullet::getDmg() {
+	return this->dmg;
 }
 
-
-void Bullet::Update(float deltaTime)
-{
-	obj->Update(deltaTime); 
-}
-
-void Bullet::Draw()
-{
-	obj->Draw(); 
+void Bullet::Update(GLfloat deltaTime) {
+	this->Set2DPosition(this->Get2DPosition().x, this->Get2DPosition().y - deltaTime * 700);
 }

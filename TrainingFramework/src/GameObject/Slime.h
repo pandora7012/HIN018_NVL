@@ -19,7 +19,8 @@ public:
 
 	Vector2 m_pos;
 	std::shared_ptr<AnimationSprite> obj;
-	int speed = 50;
-	//int dmg = 200;
+	int speed = 100;
+	int dmg = 200;
+	int hp = 100; 
 
 };

@@ -19,7 +19,6 @@ public:
 
 	Vector2 m_basepos;
 	std::shared_ptr<Sprite2D> base; 
-	int speed = 150;
 	//int dmg = 200;
 
 };

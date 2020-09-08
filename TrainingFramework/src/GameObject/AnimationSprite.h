@@ -11,6 +11,8 @@ public:
 	void		Init();
 	void		Draw();
 	void		Update(GLfloat deltatime);
+
+	Vector2		Get2DPosition();
 protected: 
 	int m_numFrames; 
 	float m_frameTime; 

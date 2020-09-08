@@ -42,7 +42,7 @@ void GSPlay::Init()
 
 	//base 
 	base = std::make_shared<MainBase>(); 
-	base->Init(Vector2(650, 500)); 
+	base->Init(Vector2(663, 545)); 
 
 	//slime
 	srand((int) time(0));
@@ -95,8 +95,9 @@ void GSPlay::Draw()
 	m_BackGround->Draw();
 	m_score->Draw();
 	player->Draw(); 
-	base->Draw(); 
+	
 	slime->Draw(); 
+	base->Draw();
 
 }
 

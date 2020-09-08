@@ -21,10 +21,10 @@ void Slime::Init(Vector2 pos)
 void Slime::Update(GLfloat deltaTime)
 {
 	obj->Update(deltaTime);
-	if (m_pos.x <= 620) {
+	if (m_pos.x <= 650) {
 		m_pos.x += speed * deltaTime; 
 	}
-	if (m_pos.y <= 470)
+	if (m_pos.y <= 515)
 	{
 		m_pos.y += speed * deltaTime;
 	}

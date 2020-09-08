@@ -1,27 +1,23 @@
-#pragma once
-#pragma once
-#include "ResourceManagers.h"
-#include"AnimationSprite.h"
+#include "Sprite2D.h"
 
 
-class Bullet
-{
+class Monster;
+
+class Bullet : public Sprite2D {
+
 public:
 	Bullet();
-	~Bullet();
+	Bullet(std::shared_ptr<Models> model, std::shared_ptr<Shaders> shader, std::shared_ptr<Texture> texture);
+	
 
-	void HandleKeyEvents(int key, bool bIsPressed);
-	void HandleTouchEvents(int x, int y, bool bIsPressed);
+	int getDmg();
+	void Update(GLfloat deltaTime) override; 
 
-	void Init(Vector2);
-
-	void Update(GLfloat deltaTime);
-	void Draw();
-
+	
+	bool checkCollision(std::shared_ptr<Monster> monster);
 
 
-	Vector2 m_pos;
-	std::shared_ptr<AnimationSprite> obj;
-	int speed = 50;
 
+private:
+	int dmg;
 };
