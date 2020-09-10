@@ -21,18 +21,22 @@ void Slime::Init(Vector2 pos)
 void Slime::Update(GLfloat deltaTime)
 {
 	obj->Update(deltaTime);
-	if (m_pos.x <= 650) {
+	if (m_pos.x <= 270) {
 		m_pos.x += speed * deltaTime; 
 	}
 	if (m_pos.y <= 515)
 	{
 		m_pos.y += speed * deltaTime;
 	}
-	if (m_pos.x > 680)
+	if (m_pos.x > 310)
 	{
 		m_pos.x -= speed * deltaTime; 
 	}
-	
+	if (m_pos.x > 270 && m_pos.x <=310 && m_pos.y >515)
+	{
+		auto texture = ResourceManagers::GetInstance()->GetTexture("Animation//Slime//slime_explode");
+		obj->SetTexture(texture);
+	}
 
 	obj->Set2DPosition(m_pos);
 }

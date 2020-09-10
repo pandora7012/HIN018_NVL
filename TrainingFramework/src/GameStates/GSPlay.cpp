@@ -16,6 +16,11 @@ GSPlay::~GSPlay()
 
 }
 
+int timer = 0; 
+std::string GSPlay::Timer(int timer)
+{
+	return std::to_string(timer); 
+}
 
 void GSPlay::Init()
 {
@@ -28,26 +33,26 @@ void GSPlay::Init()
 	m_BackGround->Set2DPosition(screenWidth / 2, screenHeight / 2);
 	m_BackGround->SetSize(screenWidth, screenHeight);
 
+	//score  
 
-	//text game title
 	shader = ResourceManagers::GetInstance()->GetShader("TextShader");
 	std::shared_ptr<Font> font = ResourceManagers::GetInstance()->GetFont("terminal");
-	m_score = std::make_shared< Text>(shader, font, "score: 10", TEXT_COLOR::RED, 1.0);
+	m_score = std::make_shared< Text>(shader, font, Timer(timer), TEXT_COLOR::RED, 1.0);
 	m_score->Set2DPosition(Vector2(5, 25));
-
 
 	// player
 	player = std::make_shared<Player>(); 
-	player->Init("Animation//Char//2_south" , Vector2(300,500)  , 4 , 0.1f); 
+	player->Init("Animation//Char//2_north" , Vector2(300,700)  , 4 , 0.1f); 
 
 	//base 
 	base = std::make_shared<MainBase>(); 
-	base->Init(Vector2(663, 545)); 
+	base->Init(Vector2(290, 545)); 
 
 	//slime
-	srand((int) time(0));
- 	slime = std::make_shared<Slime>(); 
-		slime->Init(Vector2(rand() % (1000 + 5 + 1), -10));
+	srand((int)time(0));
+	std::shared_ptr<Slime> slime = std::make_shared<Slime>();
+	slime->Init(Vector2(rand() % (540 + 5 + 1), -10));
+	slimeList.push_back(slime);
 }
 
 void GSPlay::Exit()
@@ -79,25 +84,33 @@ void GSPlay::HandleKeyEvents(int key, bool bIsPressed)
 
 void GSPlay::HandleTouchEvents(int x, int y, bool bIsPressed)
 {
-	std::cout << x << " " << y << std::endl; 
+	
 
 }
 
 void GSPlay::Update(float deltaTime)
 {
 	player->Update(deltaTime);
-	slime->Update(deltaTime); 
-
+	for (auto obj : slimeList)
+	{
+		obj->Update(deltaTime); 
+	}
+	timer += 1 ; 
+	m_score->setText(Timer(timer));
+	std::cout << timer << std::endl; 
 }
 
 void GSPlay::Draw()
 {
 	m_BackGround->Draw();
-	m_score->Draw();
 	player->Draw(); 
+	for (auto obj : slimeList)
+	{
+		obj->Draw();
+	}
 	
-	slime->Draw(); 
 	base->Draw();
+	m_score->Draw(); 
 
 }
 

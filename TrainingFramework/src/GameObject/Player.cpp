@@ -92,11 +92,11 @@ void Player::Update(GLfloat deltaTime)
 	}
 	if (KeyPress & DKEY_UP)
 	{
-		m_pos.y -= speed * deltaTime;
+	//	m_pos.y -= speed * deltaTime;
 	}
 	if (KeyPress & DKEY_DOWN)
 	{
-		m_pos.y += speed * deltaTime;
+	//	m_pos.y += speed * deltaTime;
 	}
 	if (KeyPress & DKEY_LEFT)
 	{
@@ -104,8 +104,6 @@ void Player::Update(GLfloat deltaTime)
 	}
 	
 	obj->Set2DPosition(m_pos);
-
-
 
 	// Shoot and destroy out range bullet
 	pk += deltaTime; 
@@ -115,12 +113,16 @@ void Player::Update(GLfloat deltaTime)
 		pk = 0; 
 	}
 
-	for (int i = 0 ; i < m_bullet.size() ; i++)
+	for (int i = 0; i < m_bullet.size(); i++)
 	{
 		std::shared_ptr<Bullet> bullet = m_bullet[i];
-		m_bullet[i]->Update(deltaTime); 
+		m_bullet[i]->Update(deltaTime);
+		if (bullet->Get2DPosition().y < 0) {
+			m_bullet.erase(m_bullet.begin());
+			bullet = NULL;
+		}
 	}
-	
+
 }
 
 void Player::Shoot()

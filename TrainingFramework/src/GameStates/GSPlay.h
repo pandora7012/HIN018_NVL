@@ -25,7 +25,9 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
-	
+	std::string Timer(int timer);
+
+	void createSlime(); 
 	void SetNewPostionForBullet();
 
 private:
@@ -34,7 +36,7 @@ private:
 	std::shared_ptr<Text>  m_score;
 	std::shared_ptr<Player> player;
 	std::shared_ptr<MainBase> base; 
-	std::shared_ptr<Slime> slime; 
+	std::vector<std::shared_ptr<Slime>> slimeList; 
 	
 };
 
