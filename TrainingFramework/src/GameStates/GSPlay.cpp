@@ -16,7 +16,7 @@ GSPlay::~GSPlay()
 
 }
 
-int timer = 0; 
+float timer = 0; 
 std::string GSPlay::Timer(int timer)
 {
 	return std::to_string(timer); 
@@ -47,11 +47,15 @@ void GSPlay::Init()
 	//base 
 	base = std::make_shared<MainBase>(); 
 	base->Init(Vector2(290, 545)); 
+	
+}
 
-	//slime
-	srand((int)time(0));
+void GSPlay::createSlime()
+{
+	srand(time(NULL));
+	int res = rand( )  % ( 590 + 10 + 1) - 10;
 	std::shared_ptr<Slime> slime = std::make_shared<Slime>();
-	slime->Init(Vector2(rand() % (540 + 5 + 1), -10));
+	slime->Create(Vector2(res, -15)); 
 	slimeList.push_back(slime);
 }
 
@@ -88,14 +92,28 @@ void GSPlay::HandleTouchEvents(int x, int y, bool bIsPressed)
 
 }
 
+float timeforcreate = 0; 
+
 void GSPlay::Update(float deltaTime)
 {
+	timeforcreate += deltaTime; 
 	player->Update(deltaTime);
+
+	// create slime 
+	
+	if (timeforcreate > 2)
+	{
+		createSlime(); 
+		timeforcreate = 0; 
+	}
+
 	for (auto obj : slimeList)
 	{
 		obj->Update(deltaTime); 
 	}
-	timer += 1 ; 
+
+	// timer update 
+	timer += deltaTime ; 
 	m_score->setText(Timer(timer));
 	std::cout << timer << std::endl; 
 }

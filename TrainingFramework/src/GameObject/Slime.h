@@ -4,14 +4,14 @@
 #include"AnimationSprite.h"
 #include "MainBase.h"
 
+
 class Slime
 {
 public:
 	Slime();
 	~Slime();
 
-
-	void Init( Vector2 pos);
+	void Create(Vector2); 
 
 	void Update(GLfloat deltaTime);
 	void Draw();

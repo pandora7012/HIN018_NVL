@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "MainBase.h"
 #include "Slime.h"
+#include <time.h> 
 
 
 class GSPlay :

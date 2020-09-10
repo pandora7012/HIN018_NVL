@@ -17,6 +17,11 @@ void AnimationSprite::Init()
 	Sprite2D::Init();
 }
 
+void AnimationSprite::setFrames(int frames)
+{
+	m_numFrames = frames; 
+}
+
 void AnimationSprite::Draw()
 {
 	glUseProgram(m_pShader->program);
