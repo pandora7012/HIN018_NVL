@@ -22,6 +22,7 @@ public:
 
 
 	float shootSpeed; // time to shoot 
+	void checkShooting(std::shared_ptr<Slime>slime);
 	Vector2 m_pos;
 	
 	std::shared_ptr<AnimationSprite> obj;

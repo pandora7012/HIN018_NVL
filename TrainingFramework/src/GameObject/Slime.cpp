@@ -18,8 +18,14 @@ void Slime::Create(Vector2 pos)
 	obj->Set2DPosition(pos);
 	obj->SetSize(24, 24);
 	m_pos = pos;
+
 }
 
+
+void Slime::attackBase(std::shared_ptr<MainBase> obj)
+{
+	obj->setHp(obj->getHp() - this->getDmg()); 
+}
 
 
 // Get stuff
@@ -76,18 +82,18 @@ void Slime::setHp(int hp)
 void Slime::Update(GLfloat deltaTime)
 {
 	obj->Update(deltaTime);
-	if (m_pos.x <= 270) {
+	if (m_pos.x <= 635) {
 		m_pos.x += m_speed * deltaTime; 
 	}
-	if (m_pos.y <= 515)
+	if (m_pos.y <= 500)
 	{
 		m_pos.y += m_speed * deltaTime;
 	}
-	if (m_pos.x > 310)
+	if (m_pos.x >= 680)
 	{
 		m_pos.x -= m_speed * deltaTime; 
 	}
-	if (m_pos.x > 270 && m_pos.x <=310 && m_pos.y >515)
+	if (m_pos.x > 635 && m_pos.x <680 && m_pos.y >500)
 	{
 		auto texture = ResourceManagers::GetInstance()->GetTexture("Animation//Slime//slime_explode");
 		obj->SetTexture(texture);

@@ -26,11 +26,13 @@ public:
 	void setSpd(int spd); 
 	void setHp(int hp); 
 
+	void attackBase(std::shared_ptr<MainBase> obj); 
+
 private :
 
 	Vector2 m_pos;
 	std::shared_ptr<AnimationSprite> obj;
-	int m_speed = 50;
+	int m_speed = 130;
 	int m_dmg = 50;
 	int m_hp = 100; 
 

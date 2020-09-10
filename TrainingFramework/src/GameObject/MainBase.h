@@ -16,9 +16,12 @@ public:
 	void Update(GLfloat deltaTime);
 	void Draw();
 
+	void setHp(int hp); 
+	int getHp(); 
 
+private:
 	Vector2 m_basepos;
 	std::shared_ptr<Sprite2D> base; 
-	//int dmg = 200;
+	int m_hp; 
 
 };

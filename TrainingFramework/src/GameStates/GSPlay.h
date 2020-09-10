@@ -29,6 +29,10 @@ public:
 	std::string Timer(int timer);
 
 	void createSlime(); 
+	void createSlime1();
+	void createSlime2();
+
+	
 	void SetNewPostionForBullet();
 
 private:
@@ -38,6 +42,7 @@ private:
 	std::shared_ptr<Player> player;
 	std::shared_ptr<MainBase> base; 
 	std::vector<std::shared_ptr<Slime>> slimeList; 
+	std::shared_ptr<Text> m_baseHp; 
 	
 };
 

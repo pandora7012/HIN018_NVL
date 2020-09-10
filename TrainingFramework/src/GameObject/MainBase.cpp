@@ -16,6 +16,17 @@ void MainBase::Init(Vector2 pos)
 	base->Set2DPosition(pos);
 	base->SetSize(54, 54);
 	m_basepos = pos;
+	m_hp = 3000; 
+}
+
+int MainBase::getHp()
+{
+	return m_hp; 
+}
+
+void MainBase::setHp(int hp)
+{
+	m_hp = hp; 
 }
 
 void MainBase::Update(GLfloat deltaTime)
