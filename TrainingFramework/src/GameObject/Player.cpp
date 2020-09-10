@@ -16,7 +16,7 @@ void Player::Init(std::string nameFile, Vector2 pos , int numFrame , float frame
 	obj->Set2DPosition(pos);
 	obj->SetSize(28, 36);
 	m_pos = pos;
-	pk = 0; 
+	shootSpeed = 0.4f; 
 }
 
 
@@ -81,7 +81,7 @@ void Player::HandleTouchEvents(int x, int y, bool bIsPressed)
 {
 }
 
-
+float time = 0;
 
 void Player::Update(GLfloat deltaTime)
 {
@@ -92,11 +92,11 @@ void Player::Update(GLfloat deltaTime)
 	}
 	if (KeyPress & DKEY_UP)
 	{
-	//	m_pos.y -= speed * deltaTime;
+		m_pos.y -= speed * deltaTime;
 	}
 	if (KeyPress & DKEY_DOWN)
 	{
-	//	m_pos.y += speed * deltaTime;
+		m_pos.y += speed * deltaTime;
 	}
 	if (KeyPress & DKEY_LEFT)
 	{
@@ -106,11 +106,11 @@ void Player::Update(GLfloat deltaTime)
 	obj->Set2DPosition(m_pos);
 
 	// Shoot and destroy out range bullet
-	pk += deltaTime; 
-	if (pk >= 0.2f)
+	time += deltaTime; 
+	if (time >= shootSpeed)
 	{
 		Shoot(); 
-		pk = 0; 
+		time = 0; 
 	}
 
 	for (int i = 0; i < m_bullet.size(); i++)

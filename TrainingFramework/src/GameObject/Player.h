@@ -21,11 +21,11 @@ public:
 	void Shoot(); 
 
 
-	float pk; 
+	float shootSpeed; // time to shoot 
 	Vector2 m_pos;
 	
 	std::shared_ptr<AnimationSprite> obj;
 	std::vector<std::shared_ptr<Bullet>> m_bullet; 
-	int speed = 150; 
+	int speed = 250; 
 
 };

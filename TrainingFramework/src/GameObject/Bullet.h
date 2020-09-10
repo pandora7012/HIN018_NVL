@@ -1,7 +1,6 @@
 #include "Sprite2D.h"
+#include "Slime.h"
 
-
-class Monster;
 
 class Bullet : public Sprite2D {
 
@@ -13,11 +12,11 @@ public:
 	int getDmg();
 	void Update(GLfloat deltaTime) override; 
 
-	
-	bool checkCollision(std::shared_ptr<Monster> monster);
-
+	void setDmg(int dmg); 
+	bool checkCollision(std::shared_ptr<Slime> slime);
 
 
 private:
-	int dmg;
+	int m_dmg;
+
 };

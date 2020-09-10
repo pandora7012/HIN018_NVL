@@ -53,7 +53,7 @@ void GSPlay::Init()
 void GSPlay::createSlime()
 {
 	srand(time(NULL));
-	int res = rand( )  % ( 590 + 10 + 1) - 10;
+	int res = rand( )  % ( 1290 + 10 + 1) - 10;
 	std::shared_ptr<Slime> slime = std::make_shared<Slime>();
 	slime->Create(Vector2(res, -15)); 
 	slimeList.push_back(slime);
@@ -115,7 +115,7 @@ void GSPlay::Update(float deltaTime)
 	// timer update 
 	timer += deltaTime ; 
 	m_score->setText(Timer(timer));
-	std::cout << timer << std::endl; 
+	
 }
 
 void GSPlay::Draw()
