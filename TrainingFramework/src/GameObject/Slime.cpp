@@ -89,18 +89,18 @@ void Slime::Update(GLfloat deltaTime)
 	obj->Update(deltaTime);
 
 
-	if (m_pos.x <= 635) {
+	if (m_pos.x <= 220) {
 		m_pos.x += m_speed * deltaTime; 
 	}
-	if (m_pos.y <= 500)
+	if (m_pos.y <= 670)
 	{
 		m_pos.y += m_speed * deltaTime;
 	}
-	if (m_pos.x >= 680)
+	if (m_pos.x >= 260)
 	{
 		m_pos.x -= m_speed * deltaTime; 
 	}
-	if (m_pos.x > 635 && m_pos.x <680 && m_pos.y >500)
+	if (m_pos.x > 220 && m_pos.x <260 && m_pos.y >670)
 	{
 		auto texture = ResourceManagers::GetInstance()->GetTexture("Animation//Slime//slime_explode");
 		obj->SetTexture(texture);

@@ -16,7 +16,7 @@ void Player::Init(std::string nameFile, Vector2 pos , int numFrame , float frame
 	obj->Set2DPosition(pos);
 	obj->SetSize(28, 36);
 	m_pos = pos;
-	shootSpeed = 0.4f; 
+	shootSpeed = 0.2f; 
 }
 
 int KeyPress = 0 ; 
@@ -81,7 +81,7 @@ void Player::checkShooting(std::shared_ptr<Slime> slime)
 	for (int i = 0; i < m_bullet .size(); i++) {
 		if (m_bullet[i]->checkCollision(slime) == true) {
 			slime->setHp(slime->getHp() - m_bullet[i]->getDmg());
-			//printf("ban trung + %d + %d \n", m_bullet[i]->getDmg(), slime->getHp());
+			
 			m_bullet.erase(m_bullet.begin() + i);
 		}
 	}
@@ -102,11 +102,11 @@ void Player::Update(GLfloat deltaTime)
 	}
 	if (KeyPress & DKEY_UP)
 	{
-		m_pos.y -= speed * deltaTime;
+	//	m_pos.y -= speed * deltaTime;
 	}
 	if (KeyPress & DKEY_DOWN)
 	{
-		m_pos.y += speed * deltaTime;
+	//	m_pos.y += speed * deltaTime;
 	}
 	if (KeyPress & DKEY_LEFT)
 	{

@@ -4,6 +4,7 @@
 #include "MainBase.h"
 #include "Slime.h"
 #include <time.h> 
+#include "Anim2.h"
 
 
 class GSPlay :
@@ -26,6 +27,8 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
+	std::shared_ptr<Anim2> explodeAnim(Vector2);
+
 	std::string Timer(int timer);
 
 	void createSlime(); 
@@ -43,6 +46,7 @@ private:
 	std::shared_ptr<MainBase> base; 
 	std::vector<std::shared_ptr<Slime>> slimeList; 
 	std::shared_ptr<Text> m_baseHp; 
+	std::shared_ptr<Anim2> m_explodeAnim; 
 	
 };
 

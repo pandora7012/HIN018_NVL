@@ -40,20 +40,19 @@ void GSAbout::Init()
 	//logo 
 	texture = ResourceManagers::GetInstance()->GetTexture("logo");
 	logo = std::make_shared<Sprite2D>(model, shader, texture);
-	logo->Set2DPosition(screenWidth / 2, screenHeight / 2 + 75);
+	logo->Set2DPosition(screenWidth / 2, screenHeight / 2 + 95);
 	logo->SetSize(150, 150);
 
 
 	//text 
 	shader = ResourceManagers::GetInstance()->GetShader("TextShader");
 	std::shared_ptr<Font> font = ResourceManagers::GetInstance()->GetFont("terminal");
-	m_Text = std::make_shared< Text>(shader, font, "This game designed by  DOGE studio", TEXT_COLOR::YELLOW, 1.0);
-	m_Text->Set2DPosition(Vector2(screenWidth / 2 - 250, 200));
+	m_Text = std::make_shared< Text>(shader, font, "This game designed by a DOGE", TEXT_COLOR::YELLOW, 1.0);
+	m_Text->Set2DPosition(screenWidth / 2-200, screenHeight / 2);
  
 	shader = ResourceManagers::GetInstance()->GetShader("TextShader");
-	m_Text2 = std::make_shared< Text>(shader, font, "Born and bankrupt since 2020-RIP", TEXT_COLOR::YELLOW, 1.0);
-	m_Text2->Set2DPosition(Vector2(screenWidth / 2 - 240, 250));
-
+	m_Text2 = std::make_shared< Text>(shader, font, "RIP", TEXT_COLOR::YELLOW, 1.0);
+	m_Text2->Set2DPosition(screenWidth / 2, screenHeight / 2 - 50);
 
 }
 

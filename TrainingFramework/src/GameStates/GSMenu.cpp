@@ -18,7 +18,7 @@ GSMenu::~GSMenu()
 void GSMenu::Init()
 {
 	auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
-	auto texture = ResourceManagers::GetInstance()->GetTexture("bg_main_menu");
+	auto texture = ResourceManagers::GetInstance()->GetTexture("bg");
 
 	//BackGround
 	auto shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
@@ -74,14 +74,14 @@ void GSMenu::Init()
 	texture = ResourceManagers::GetInstance()->GetTexture("Animation//Slime//slime1_front");
 	shader = ResourceManagers::GetInstance()->GetShader("AnimationShader");
 	std::shared_ptr<AnimationSprite> test = std::make_shared<AnimationSprite>(model, shader, texture, 4, 0.2f);
-	test->Set2DPosition(screenWidth / 2-400, screenHeight / 2+100);
+	test->Set2DPosition(screenWidth / 2 -100, screenHeight / 2+100);
 	test->SetSize(25, 25);
 	m_listAnimation.push_back(test);
 
 	texture = ResourceManagers::GetInstance()->GetTexture("Animation//Slime//slime1_front");
 	//shader = ResourceManagers::GetInstance()->GetShader("AnimationShader");
 	std::shared_ptr<AnimationSprite> test2 = std::make_shared<AnimationSprite>(model, shader, texture, 4, 0.2f);
-	test2->Set2DPosition(screenWidth / 2 +400, screenHeight / 2 + 100);
+	test2->Set2DPosition(screenWidth / 2 +100, screenHeight / 2 + 100);
 	test2->SetSize(25, 25);
 	m_listAnimation.push_back(test2);
 	
@@ -152,7 +152,7 @@ void GSMenu::Draw()
 	}
 	for (auto obj : m_listAnimation)
 	{
-		obj->Draw(); 
+		//obj->Draw(); 
 	}
-	m_Text_gameName->Draw();
+	//m_Text_gameName->Draw();
 }
