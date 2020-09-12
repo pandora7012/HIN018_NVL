@@ -99,6 +99,13 @@ void GSMenu::Init()
 	std::shared_ptr<Font> font = ResourceManagers::GetInstance()->GetFont("terminal");
 	m_Text_gameName = std::make_shared< Text>(shader, font, "HIGH SCORE: 10s", TEXT_COLOR::YELLOW, 1.0);
 	m_Text_gameName->Set2DPosition(Vector2(screenWidth / 2 - 110, 270));
+
+
+	//sound 
+	soloud.init();
+	//wav.load("../Data/Sounds/TheBaddest.wav");
+	//soloud.play(wav);
+
 }
 
 void GSMenu::Exit()

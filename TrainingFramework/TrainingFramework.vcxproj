@@ -145,7 +145,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Include\AMD;$(SolutionDir)\freetype\include;$(SolutionDir)\Utilities\src;$(projectdir)\src\GameManager;$(projectdir)\src\GameObject;$(projectdir)\src\GameState;$(projectdir)\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Include\AMD;$(SolutionDir)\freetype\include;$(SolutionDir)\Utilities\src;$(projectdir)\src\GameManager;$(projectdir)\src\GameObject;$(projectdir)\src\GameState;$(projectdir)\src;$(SolutionDir)\soloud20200207\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -254,6 +254,9 @@
     <ProjectReference Include="..\freetype\builds\windows\vc2019\freetype.vcxproj">
       <Project>{78b079bd-9fc7-4b9e-b4a6-96da0f00248b}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\soloud20200207\build\vs2019\SoloudStatic.vcxproj">
+      <Project>{83540317-6fb7-92bb-183d-cb71047f5e3e}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Utilities\Utilities.vcxproj">
       <Project>{0d44529e-f7dd-4454-8ead-9afd857f53b4}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -262,7 +265,6 @@
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\GameManager\ResourceManagers.cpp" />
-    <ClCompile Include="src\GameObject\Anim2.cpp" />
     <ClCompile Include="src\GameObject\AnimationSprite.cpp" />
     <ClCompile Include="src\GameObject\Bullet.cpp" />
     <ClCompile Include="src\GameObject\MainBase.cpp" />
@@ -291,7 +293,6 @@
     <ClInclude Include="src\GameConfig.h" />
     <ClInclude Include="src\GameManager\ResourceManagers.h" />
     <ClInclude Include="src\GameManager\Singleton.h" />
-    <ClInclude Include="src\GameObject\Anim2.h" />
     <ClInclude Include="src\GameObject\AnimationSprite.h" />
     <ClInclude Include="src\GameObject\BaseObject.h" />
     <ClInclude Include="src\GameObject\Bullet.h" />

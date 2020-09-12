@@ -2,6 +2,7 @@
 #include "gamestatebase.h"
 #include "GameButton.h"
 #include "AnimationSprite.h"
+#include "soloud.h"
 
 class GSMenu :
 	public GameStateBase
@@ -28,6 +29,9 @@ private:
 	std::shared_ptr<Text>  m_Text_gameName;
 	std::vector<std::shared_ptr<AnimationSprite>> m_listAnimation; 
 	std::shared_ptr<Sprite2D> m_gg;
+
+	SoLoud::Soloud soloud; 
+	SoLoud::Soloud wav; 
 
 };
 
