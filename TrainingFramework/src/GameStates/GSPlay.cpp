@@ -121,7 +121,6 @@ void GSPlay::HandleTouchEvents(int x, int y, bool bIsPressed)
 }
 
 
-
 float timeforcreate = 0; 
 
 void GSPlay::Update(float deltaTime)
@@ -131,7 +130,7 @@ void GSPlay::Update(float deltaTime)
 
 	// create slime 
 	
-	if (timeforcreate > 3)
+	if (timeforcreate > 2)
 	{
 		createSlime() ; 
 		createSlime1(); 
@@ -142,28 +141,32 @@ void GSPlay::Update(float deltaTime)
 	for (auto obj : slimeList)
 	{
 		obj->Update(deltaTime); 
-		obj->attackBase(base); 
+		player->checkShooting(obj); 
 	}
+
+	for (int i = 0; i < slimeList.size(); i++)
+	{
+		if (slimeList[i]->getState() == ATTACK)
+		{
+			slimeList[i]->attackBase(base); 
+			slimeList.erase(slimeList.begin() + i); 
+		}
+		else if (slimeList[i]->getState() == DIE)
+		{
+			slimeList.erase(slimeList.begin() + i);
+		}
+	}
+
 
 	// timer update 
 	timer += deltaTime ; 
 	m_score->setText(Timer(timer));
 
 	// base hp update 
+	
 	m_baseHp->setText(std::to_string(base->getHp())); 
 
-
 	// set slime uprgade 
-	if ( (int) timer )
-	{
-
-	}
-
-	
-
-
-
-	
 }
 
 void GSPlay::Draw()

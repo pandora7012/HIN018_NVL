@@ -18,9 +18,8 @@ void Slime::Create(Vector2 pos)
 	obj->Set2DPosition(pos);
 	obj->SetSize(24, 24);
 	m_pos = pos;
-
+	this->setState(MOVING); 
 }
-
 
 void Slime::attackBase(std::shared_ptr<MainBase> obj)
 {
@@ -49,7 +48,10 @@ int Slime::getSpd()
 {
 	return m_speed; 
 }
-
+SlimeState Slime::getState()
+{
+	return m_state; 
+}
 
 // Set stuff 
 
@@ -72,7 +74,10 @@ void Slime::setHp(int hp)
 {
 	m_hp = hp; 
 }
-
+void Slime::setState(SlimeState state)
+{
+	m_state = state; 
+}
 
 
 
@@ -82,6 +87,8 @@ void Slime::setHp(int hp)
 void Slime::Update(GLfloat deltaTime)
 {
 	obj->Update(deltaTime);
+
+
 	if (m_pos.x <= 635) {
 		m_pos.x += m_speed * deltaTime; 
 	}
@@ -99,8 +106,14 @@ void Slime::Update(GLfloat deltaTime)
 		obj->SetTexture(texture);
 		obj->SetSize(37, 41); 
 		obj->setFrames(8); 
+		this->setState(ATTACK);
 	}
 
+	if (m_hp < 0)
+	{
+		this->setState(DIE); 
+	}
+	
 	obj->Set2DPosition(m_pos);
 }
 void Slime::Draw()

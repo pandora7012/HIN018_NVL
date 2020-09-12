@@ -19,7 +19,6 @@ void Player::Init(std::string nameFile, Vector2 pos , int numFrame , float frame
 	shootSpeed = 0.4f; 
 }
 
-
 int KeyPress = 0 ; 
 
 
@@ -82,11 +81,11 @@ void Player::checkShooting(std::shared_ptr<Slime> slime)
 	for (int i = 0; i < m_bullet .size(); i++) {
 		if (m_bullet[i]->checkCollision(slime) == true) {
 			slime->setHp(slime->getHp() - m_bullet[i]->getDmg());
+			//printf("ban trung + %d + %d \n", m_bullet[i]->getDmg(), slime->getHp());
 			m_bullet.erase(m_bullet.begin() + i);
 		}
 	}
 }
-
 
 void Player::HandleTouchEvents(int x, int y, bool bIsPressed)
 {
@@ -130,7 +129,6 @@ void Player::Update(GLfloat deltaTime)
 		m_bullet[i]->Update(deltaTime);
 		if (bullet->Get2DPosition().y < 0) {
 			m_bullet.erase(m_bullet.begin());
-			bullet = NULL;
 		}
 	}
 
@@ -145,7 +143,7 @@ void Player::Shoot()
 	auto texture = ResourceManagers::GetInstance()->GetTexture("bullet");
 	std::shared_ptr<Bullet> bullet = std::make_shared<Bullet>(model, shader, texture);
 	bullet->Set2DPosition(x, y - 30);
-	bullet->SetSize(20, 20);
+	bullet->SetSize(40, 40);
 	m_bullet.push_back(bullet);
 }
 
