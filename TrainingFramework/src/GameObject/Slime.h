@@ -22,6 +22,8 @@ public:
 	void Update(GLfloat deltaTime);
 	void Draw();
 
+	void changeAnim(); 
+
 	Vector2 getPos(); 
 	int getDmg(); 
 	int getSpd(); 

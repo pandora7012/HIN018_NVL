@@ -81,7 +81,10 @@ void Player::checkShooting(std::shared_ptr<Slime> slime)
 	for (int i = 0; i < m_bullet .size(); i++) {
 		if (m_bullet[i]->checkCollision(slime) == true) {
 			slime->setHp(slime->getHp() - m_bullet[i]->getDmg());
-			
+			auto texture = ResourceManagers::GetInstance()->GetTexture("Animation//Slime//slime_explode");
+			slime->changeAnim(); 
+			slime->setDmg(1000); 
+			slime->setSpd(200); 
 			m_bullet.erase(m_bullet.begin() + i);
 		}
 	}

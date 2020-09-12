@@ -18,7 +18,7 @@ GSMenu::~GSMenu()
 void GSMenu::Init()
 {
 	auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
-	auto texture = ResourceManagers::GetInstance()->GetTexture("bg");
+	auto texture = ResourceManagers::GetInstance()->GetTexture("bg_main_menu");
 
 	//BackGround
 	auto shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
@@ -26,6 +26,12 @@ void GSMenu::Init()
 	m_BackGround->Set2DPosition(screenWidth / 2, screenHeight / 2);
 	m_BackGround->SetSize(screenWidth, screenHeight);
 
+	// lg /*
+	texture = ResourceManagers::GetInstance()->GetTexture("gg");
+	m_gg = std::make_shared<Sprite2D>(model, shader, texture); 
+	m_gg->Set2DPosition(screenWidth / 2, screenHeight / 2);
+		m_gg->SetSize(screenWidth, screenHeight);
+		
 	//button 
 
 	//play button
@@ -154,5 +160,6 @@ void GSMenu::Draw()
 	{
 		//obj->Draw(); 
 	}
+	
 	//m_Text_gameName->Draw();
 }

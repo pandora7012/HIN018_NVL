@@ -178,6 +178,16 @@ void GSPlay::Update(float deltaTime)
 	//std::cout << timer << std::endl; 
 
 	// base hp update 
+
+	if ( (int) timer % 25 == 0 )
+	{
+		for (auto obj : slimeList)
+		{
+			obj->changeAnim(); 
+			obj->setSpd(200); 
+			obj->setDmg(1000); 
+		}
+	}
 	
 	m_baseHp->setText(std::to_string(base->getHp())); 
 

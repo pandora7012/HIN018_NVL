@@ -79,6 +79,11 @@ void Slime::setState(SlimeState state)
 	m_state = state; 
 }
 
+void Slime::changeAnim()
+{
+	auto texture = ResourceManagers::GetInstance()->GetTexture("Animation//Slime//slime_explode"); 
+	obj->SetTexture(texture); 
+}
 
 
 // Update and draw
