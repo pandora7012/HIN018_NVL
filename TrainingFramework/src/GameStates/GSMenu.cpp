@@ -17,6 +17,12 @@ GSMenu::~GSMenu()
 
 void GSMenu::Init()
 {
+	//sound 
+
+	bg.load("..//Data//Sound//back_ground_menu.wav"); 
+	Application::GetInstance()->soloud.play(bg); 
+	
+
 	auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
 	auto texture = ResourceManagers::GetInstance()->GetTexture("bg_main_menu");
 
@@ -41,7 +47,8 @@ void GSMenu::Init()
 	button->SetSize(250, 62.5);
 	button->SetOnClick([]() {
 		GameStateMachine::GetInstance()->ChangeState(StateTypes::STATE_Play);
-		});
+		Application::GetInstance()->soloud.stopAll(); 
+				});
 	m_listButton.push_back(button);
 
 	//exit button
@@ -91,8 +98,6 @@ void GSMenu::Init()
 	test2->SetSize(25, 25);
 	m_listAnimation.push_back(test2);
 	
-	
-
 
 	//text game 
 	shader = ResourceManagers::GetInstance()->GetShader("TextShader");
@@ -102,10 +107,7 @@ void GSMenu::Init()
 
 
 	//sound 
-	soloud.init();
-	sample.load("..///Data//Sound//TheBaddest.wav");
-	
-	soloud.play(sample); 
+
 
 }
 
@@ -155,6 +157,8 @@ void GSMenu::Update(float deltaTime)
 	{
 		obj->Update(deltaTime); 
 	}
+
+	
 }
 
 void GSMenu::Draw()

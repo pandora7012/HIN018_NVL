@@ -27,6 +27,7 @@ std::shared_ptr<GameStateBase> GameStateBase::CreateState(StateTypes stt)
 		break;
 	case STATE_Play:
 		gs = std::make_shared<GSPlay>();
+		
 		break;
 	case STATE_Settings:
 		gs = std::make_shared<GSSettings>();

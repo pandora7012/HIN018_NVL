@@ -1,6 +1,9 @@
 #pragma once
 #include "Singleton.h"
 #include "GameConfig.h"
+#include "soloud.h"
+#include "stdlib.h" 
+#include "soloud_wav.h"
 
 
 class Application : public CSingleton<Application>
@@ -15,8 +18,10 @@ public:
 	void		HandleTouchEvent(GLint x, GLint y, bool bIsPresseded);
 	void		Exit();
 
-private:
-	
+
+	SoLoud::Soloud soloud;
+
+private:	
 
 };
 

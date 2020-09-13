@@ -19,6 +19,7 @@ void Application::Init()
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 	GameStateMachine::GetInstance()->PushState(StateTypes::STATE_Intro);
+	soloud.init(); 
 }
 
 void Application::Update(GLfloat deltaTime)

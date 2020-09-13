@@ -2,7 +2,8 @@
 #include "ResourceManagers.h"
 #include"AnimationSprite.h"
 #include "Bullet.h"
-
+#include "Application.h"
+#include "MainBase.h"
 
 class Player 
 {
@@ -28,5 +29,8 @@ public:
 	std::shared_ptr<AnimationSprite> obj;
 	std::vector<std::shared_ptr<Bullet>> m_bullet; 
 	int speed = 250; 
+
+	SoLoud::Wav shoot; 
+
 
 };

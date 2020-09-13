@@ -23,9 +23,18 @@ std::string GSPlay::Timer(int timer)
 }
 
 
-
 void GSPlay::Init()
 {
+		
+	check = false; 
+	//sound 
+
+	bg.load("..//Data//Sound//play_bg.wav"); 
+	bg.setLooping(1); 
+
+	Application::GetInstance()->soloud.play(bg); 
+
+
 	auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
 	auto texture = ResourceManagers::GetInstance()->GetTexture("bg_play");
 
@@ -104,21 +113,40 @@ void GSPlay::Init()
 
 	shader = ResourceManagers::GetInstance()->GetShader("TextShader");
 	//std::shared_ptr<Font> font = ResourceManagers::GetInstance()->GetFont("terminal");
-	m_endtext = std::make_shared< Text>(shader, font, "YOUR SCORE: ", TEXT_COLOR::BLUE, 1.0);
+	m_endtext = std::make_shared< Text>(shader, font, "YOUR SCORE: ", TEXT_COLOR::WHILE, 1.0);
 	m_endtext->Set2DPosition(screenWidth / 2-120, screenHeight / 2);
 
 	shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
 	texture = ResourceManagers::GetInstance()->GetTexture("button_ok");
 	m_Button = std::make_shared<GameButton>(model, shader, texture);
-	m_Button->Set2DPosition(screenWidth / 2, screenHeight / 2 + 250);
+	m_Button->Set2DPosition(screenWidth / 2, screenHeight / 2 + 50);
 	m_Button->SetSize(86, 37);
 	m_Button->SetOnClick([]() {
+		Application::GetInstance()->soloud.stopAll(); 
 		GameStateMachine::GetInstance()->PopState();
 		GameStateMachine::GetInstance()->ChangeState(StateTypes::STATE_Menu);
 		});
 
-	soloud.init();
-	explode.load("..///Data//Sound//explode_effect.wav");
+	shader = ResourceManagers::GetInstance()->GetShader("AnimationShader");
+	texture = ResourceManagers::GetInstance()->GetTexture("Animation//explode"); 
+	a1 = std::make_shared<AnimationSprite>(model, shader, texture, 120, 0.02f); 
+	a1->Set2DPosition(250, 665) ;
+	a1->SetSize(200,200); 
+	
+	texture = ResourceManagers::GetInstance()->GetTexture("Animation//explode2");
+	std::shared_ptr<AnimationSprite> a2 = std::make_shared<AnimationSprite>(model, shader, texture, 3, 0.5f);
+	a2->Set2DPosition(240, 695);
+	a2->SetSize(40, 40);
+	m_explode.push_back(a2);
+
+	std::shared_ptr<AnimationSprite> a3 = std::make_shared<AnimationSprite>(model, shader, texture, 3, 0.7f);
+	a3->Set2DPosition(260, 665);
+	a3->SetSize(40, 40);
+	m_explode.push_back(a3);
+	
+
+
+	
 }
 
 
@@ -189,15 +217,23 @@ void GSPlay::HandleTouchEvents(int x, int y, bool bIsPressed)
 
 float timeforcreate = 0; 
 int p = 1; 
+float time1 = 0; 
+
 
 void GSPlay::Update(float deltaTime)
 {
 	timeforcreate += deltaTime; 
 	player->Update(deltaTime);
+	time1 += deltaTime;
+	if (time1 >= 0.2f && base->getHp() > 0  )
+	{
+		player->Shoot();
+		time1 = 0;
+	}
 
 	// create slime 
 	
-	if (timeforcreate > 1.25)
+	if (timeforcreate > 1.5f)
 	{
 		createSlime() ; 
 		createSlime1(); 
@@ -245,15 +281,36 @@ void GSPlay::Update(float deltaTime)
 	
 	m_baseHp->setText(std::to_string(base->getHp())); 
 	
-
+	
+	if (base->getHp() < 0)
+	{
+		if (check == false)
+		{
+			Application::GetInstance()->soloud.stopAll();
+			explode.load("..//Data//Sound//explode_effect.wav"); 
+			end.load("..//Data//Sound//end.wav");
+			Application::GetInstance()->soloud.play(explode);
+			Application::GetInstance()->soloud.play(end);
+			
+			check = true; 
+		}
+		
+	
+	}
 
 	// Update effect 
-
+	a1->Update(deltaTime); 
 	for (auto obj : Anim)
 	{
 		obj->Update(deltaTime); 
 	}
 	m_Button->Update(deltaTime); 
+
+	for (auto obj : m_explode)
+	{
+		obj->Update(deltaTime); 
+	}
+
 	
 }
 
@@ -297,16 +354,21 @@ void GSPlay::Draw()
 	else if (base->getHp() <= 0)
 	{
 		m_endbg->Draw(); 
+		a1->Draw(); 
+		base->Draw(); 
+		for (auto obj : m_explode)
+		{
+			obj->Draw();
+		}
 		m_endtext->Draw(); 
 		auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
 		auto texture = ResourceManagers::GetInstance()->GetTexture("Animation//crystal1");
 		auto shader = ResourceManagers::GetInstance()->GetShader("TextShader");
 		std::shared_ptr<Font> font = ResourceManagers::GetInstance()->GetFont("terminal");
-		m_endscore = std::make_shared< Text>(shader, font, std::to_string((int)timer), TEXT_COLOR::BLUE, 1.0);
+		m_endscore = std::make_shared< Text>(shader, font, std::to_string((int)timer), TEXT_COLOR::WHILE, 1.0);
 		m_endscore->Set2DPosition(screenWidth / 2+40, screenHeight / 2);
 		m_endscore->Draw();
-		
-		
+
 		m_Button->Draw(); 
 		
 	}

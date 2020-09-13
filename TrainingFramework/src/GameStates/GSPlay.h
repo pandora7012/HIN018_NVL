@@ -6,9 +6,8 @@
 #include <time.h> 
 #include "GameButton.h"
 #include <string.h>
-#include <soloud.h>
-#include "soloud_wav.h"
-#include "soloud_thread.h"
+
+
 
 
 class GSPlay :
@@ -42,6 +41,11 @@ public:
 	
 	void SetNewPostionForBullet();
 
+	SoLoud::Wav bg; 
+	SoLoud::Wav explode; 
+	SoLoud::Wav end; 
+
+	bool check;
 private:
 
 	std::shared_ptr<Sprite2D> m_BackGround;
@@ -56,8 +60,9 @@ private:
 	std::shared_ptr<Sprite2D> m_endbg;
 	std::shared_ptr<GameButton>m_Button;
 	std::shared_ptr<Text>  m_endscore; 
+	std::shared_ptr<AnimationSprite> a1; 
+	std::list<std::shared_ptr< AnimationSprite>>  m_explode; 
 
-	SoLoud::Soloud soloud;
-	SoLoud::Wav explode;
+	
 };
 

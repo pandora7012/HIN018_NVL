@@ -14,7 +14,6 @@ GSSettings::~GSSettings()
 }
 
 
-
 void GSSettings::Init()
 {
 	auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D");
@@ -43,6 +42,7 @@ void GSSettings::Init()
 	m_Table->SetSize(111, 231);
 
 }
+
 
 void GSSettings::Exit()
 {

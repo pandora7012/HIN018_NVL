@@ -22,6 +22,13 @@ void AnimationSprite::setFrames(int frames)
 	m_numFrames = frames; 
 }
 
+int  AnimationSprite::getCurrentFrame()
+{
+	return m_currentFrame; 
+}
+
+
+
 void AnimationSprite::Draw()
 {
 	glUseProgram(m_pShader->program);

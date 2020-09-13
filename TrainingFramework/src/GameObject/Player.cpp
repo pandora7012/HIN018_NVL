@@ -17,6 +17,10 @@ void Player::Init(std::string nameFile, Vector2 pos , int numFrame , float frame
 	obj->SetSize(28, 36);
 	m_pos = pos;
 	shootSpeed = 0.2f; 
+
+
+	shoot.load("..//Data//Sound//Shoot2.wav");
+
 }
 
 int KeyPress = 0 ; 
@@ -119,12 +123,6 @@ void Player::Update(GLfloat deltaTime)
 	obj->Set2DPosition(m_pos);
 
 	// Shoot and destroy out range bullet
-	time += deltaTime; 
-	if (time >= shootSpeed)
-	{
-		Shoot(); 
-		time = 0; 
-	}
 
 	for (int i = 0; i < m_bullet.size(); i++)
 	{
@@ -148,6 +146,8 @@ void Player::Shoot()
 	bullet->Set2DPosition(x, y - 30);
 	bullet->SetSize(40, 40);
 	m_bullet.push_back(bullet);
+	
+	Application::GetInstance()->soloud.play(shoot); 
 }
 
 

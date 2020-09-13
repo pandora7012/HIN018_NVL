@@ -13,6 +13,9 @@ public:
 	void		Update(GLfloat deltatime);
 	void		setFrames(int frames); 
 
+	//int 		getFrames();
+	int 		getCurrentFrame(); 
+
 	Vector2		Get2DPosition();
 protected: 
 	int m_numFrames; 

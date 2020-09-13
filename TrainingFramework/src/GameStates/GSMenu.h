@@ -2,11 +2,7 @@
 #include "gamestatebase.h"
 #include "GameButton.h"
 #include "AnimationSprite.h"
-#include "soloud.h"
-#include "stdlib.h" 
-#include "soloud_wav.h"
-#include "soloud_thread.h"
-
+#include "Application.h"
 
 class GSMenu :
 	public GameStateBase
@@ -27,6 +23,9 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
+	SoLoud::Wav bg; 
+
+
 private:
 	std::shared_ptr<Sprite2D> m_BackGround;
 	std::list<std::shared_ptr<GameButton>>	m_listButton;
@@ -34,8 +33,9 @@ private:
 	std::vector<std::shared_ptr<AnimationSprite>> m_listAnimation; 
 	std::shared_ptr<Sprite2D> m_gg;
 
-	SoLoud::Soloud soloud; 
-	SoLoud::Wav sample; 
+
+
+	
 
 };
 
