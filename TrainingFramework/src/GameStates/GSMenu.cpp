@@ -103,8 +103,9 @@ void GSMenu::Init()
 
 	//sound 
 	soloud.init();
-	//wav.load("../Data/Sounds/TheBaddest.wav");
-	//soloud.play(wav);
+	sample.load("..///Data//Sound//TheBaddest.wav");
+	
+	soloud.play(sample); 
 
 }
 

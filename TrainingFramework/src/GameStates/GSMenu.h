@@ -3,6 +3,10 @@
 #include "GameButton.h"
 #include "AnimationSprite.h"
 #include "soloud.h"
+#include "stdlib.h" 
+#include "soloud_wav.h"
+#include "soloud_thread.h"
+
 
 class GSMenu :
 	public GameStateBase
@@ -31,7 +35,7 @@ private:
 	std::shared_ptr<Sprite2D> m_gg;
 
 	SoLoud::Soloud soloud; 
-	SoLoud::Soloud wav; 
+	SoLoud::Wav sample; 
 
 };
 

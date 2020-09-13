@@ -117,7 +117,8 @@ void GSPlay::Init()
 		GameStateMachine::GetInstance()->ChangeState(StateTypes::STATE_Menu);
 		});
 
-
+	soloud.init();
+	explode.load("..///Data//Sound//explode_effect.wav");
 }
 
 
@@ -304,6 +305,7 @@ void GSPlay::Draw()
 		m_endscore = std::make_shared< Text>(shader, font, std::to_string((int)timer), TEXT_COLOR::BLUE, 1.0);
 		m_endscore->Set2DPosition(screenWidth / 2+40, screenHeight / 2);
 		m_endscore->Draw();
+		
 		
 		m_Button->Draw(); 
 		

@@ -101,7 +101,7 @@ void Player::Update(GLfloat deltaTime)
 	obj->Update(deltaTime);
 	if (KeyPress & DKEY_RIGHT)
 	{
-		m_pos.x += speed * deltaTime;
+		if (m_pos.x < 470) m_pos.x += speed * deltaTime;
 	}
 	if (KeyPress & DKEY_UP)
 	{
@@ -113,7 +113,7 @@ void Player::Update(GLfloat deltaTime)
 	}
 	if (KeyPress & DKEY_LEFT)
 	{
-		m_pos.x -= speed * deltaTime;
+		if (m_pos.x < 470)m_pos.x -= speed * deltaTime;
 	}
 	
 	obj->Set2DPosition(m_pos);

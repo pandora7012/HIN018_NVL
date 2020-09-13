@@ -6,6 +6,9 @@
 #include <time.h> 
 #include "GameButton.h"
 #include <string.h>
+#include <soloud.h>
+#include "soloud_wav.h"
+#include "soloud_thread.h"
 
 
 class GSPlay :
@@ -53,5 +56,8 @@ private:
 	std::shared_ptr<Sprite2D> m_endbg;
 	std::shared_ptr<GameButton>m_Button;
 	std::shared_ptr<Text>  m_endscore; 
+
+	SoLoud::Soloud soloud;
+	SoLoud::Wav explode;
 };
 
