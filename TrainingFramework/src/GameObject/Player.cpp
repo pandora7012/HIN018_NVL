@@ -83,8 +83,8 @@ void Player::checkShooting(std::shared_ptr<Slime> slime)
 			slime->setHp(slime->getHp() - m_bullet[i]->getDmg());
 			auto texture = ResourceManagers::GetInstance()->GetTexture("Animation//Slime//slime_explode");
 			slime->changeAnim(); 
-			slime->setDmg(1000); 
-			slime->setSpd(200); 
+			slime->setDmg(500); 
+			slime->setSpd(250); 
 			m_bullet.erase(m_bullet.begin() + i);
 		}
 	}

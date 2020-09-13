@@ -104,8 +104,8 @@ void GSPlay::Init()
 
 	shader = ResourceManagers::GetInstance()->GetShader("TextShader");
 	//std::shared_ptr<Font> font = ResourceManagers::GetInstance()->GetFont("terminal");
-	m_endtext = std::make_shared< Text>(shader, font, "YOUR SCORE", TEXT_COLOR::CYAN, 1.0);
-	m_endtext->Set2DPosition(screenWidth / 2-100, screenHeight / 2);
+	m_endtext = std::make_shared< Text>(shader, font, "YOUR SCORE: ", TEXT_COLOR::BLUE, 1.0);
+	m_endtext->Set2DPosition(screenWidth / 2-120, screenHeight / 2);
 
 	shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
 	texture = ResourceManagers::GetInstance()->GetTexture("button_ok");
@@ -196,7 +196,7 @@ void GSPlay::Update(float deltaTime)
 
 	// create slime 
 	
-	if (timeforcreate > 3)
+	if (timeforcreate > 1.25)
 	{
 		createSlime() ; 
 		createSlime1(); 
@@ -232,13 +232,13 @@ void GSPlay::Update(float deltaTime)
 
 	// base hp update + slime upgrade 
 
-	if ( (int) timer % 25 == 0 )
+	if ( (int) timer % 30 == 0 )
 	{
 		for (auto obj : slimeList)
 		{
 			obj->changeAnim(); 
 			obj->setSpd(200); 
-			obj->setDmg(1000); 
+			obj->setDmg(500);  
 		}
 	}
 	
@@ -301,8 +301,8 @@ void GSPlay::Draw()
 		auto texture = ResourceManagers::GetInstance()->GetTexture("Animation//crystal1");
 		auto shader = ResourceManagers::GetInstance()->GetShader("TextShader");
 		std::shared_ptr<Font> font = ResourceManagers::GetInstance()->GetFont("terminal");
-		m_endscore = std::make_shared< Text>(shader, font, std::to_string((int)timer), TEXT_COLOR::PURPLE, 1.0);
-		m_endscore->Set2DPosition(screenWidth / 2-40, screenHeight / 2+50);
+		m_endscore = std::make_shared< Text>(shader, font, std::to_string((int)timer), TEXT_COLOR::BLUE, 1.0);
+		m_endscore->Set2DPosition(screenWidth / 2+40, screenHeight / 2);
 		m_endscore->Draw();
 		
 		m_Button->Draw(); 

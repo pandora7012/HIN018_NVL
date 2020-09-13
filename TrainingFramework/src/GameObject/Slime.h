@@ -42,8 +42,8 @@ private :
 
 	Vector2 m_pos;
 	std::shared_ptr<AnimationSprite> obj;
-	int m_speed = 100;
-	int m_dmg = 500;
+	int m_speed = 150;
+	int m_dmg = 200;
 	int m_hp = 100; 
 	SlimeState m_state; 
 
